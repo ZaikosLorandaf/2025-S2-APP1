@@ -14,17 +14,25 @@
 #define COUCHE_H
 
 #include "forme.h"
+#include <cmath>
 
 const int MAX_FORMES = 5;
 
 class Couche {
   public:
-    int addForme(Forme* f);
-    int removeForme(int index);
+    Couche();
+    int getState();
+    bool addForme(Forme* f);
+    Forme* removeForme(int index);
     Forme* getForme(int index);
+    double getArea();
+    bool translation(int deltaX, int deltaY);
+    bool reset();
+    bool changeState(int s);
   private:
     Forme* formes[MAX_FORMES];
-    int itsIndex {0};
+    int indexFormes {0};
+    int state;
 };
 
 #endif
