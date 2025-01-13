@@ -7,38 +7,59 @@ Vecteur::Vecteur() {
 
 Vecteur::~Vecteur() {
   vider();
-  delete[] *couches;
+  delete[] *itsCouches;
 }
 
 bool Vecteur::addCouche(Couche* c) {
   if (c == NULL)
     return false;
-  if (currentSize == capacity)
+  if (currentSizeIndex == capacity)
     increaseSize();
-  capacity++;
-  couches[capacity] = c;
+  currentSizeIndex++;
+  itsCouches[currentSizeIndex] = c;
   return true;
 }
 
 void Vecteur::increaseSize() {
   capacity *= 2;
   Couche* newCouche = new Couche[capacity];
-  for (int i = 0; i <= currentSize; i++)
-    newCouche[i] = *couches[i];
-  *couches = newCouche;
+  for (int i = 0; i <= currentSizeIndex; i++)
+    newCouche[i] = *itsCouches[i];
+  *itsCouches = newCouche;
   delete[] newCouche;
 }
 
 int Vecteur::getCurrentSize() {
-  return currentSize;
+  return currentSizeIndex;
 }
 
 bool Vecteur::vider() {
-  for (int i = 0; i < currentSize; i++)
-    couches[i] = NULL;
+  for (int i = 0; i < currentSizeIndex; i++)
+    itsCouches[i] = NULL;
   capacity = INIT_VEC_SIZE;
   Couche* newCouche = new Couche[capacity];
-  *couches = newCouche;
+  *itsCouches = newCouche;
   delete[] newCouche;
   return true;
 }
+
+Couche* Vecteur::removeCouche(int index) {
+  if (index < 0 || index > currentSizeIndex)
+    return NULL;
+  Couche* c = itsCouches[index];
+  if (index == currentSizeIndex) {
+    itsCouches[index] = NULL;
+    return c;
+  }
+  for (int i = index; i < currentSizeIndex; i++)
+    itsCouches[i] = itsCouches[i+1];
+  itsCouches[currentSizeIndex] = NULL;
+  currentSizeIndex--;
+  return c;
+}
+
+Couche* Vecteur::getCouche(int index) {
+  return itsCouches[index];
+}
+
+

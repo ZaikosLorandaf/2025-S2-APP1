@@ -11,10 +11,6 @@
 #include "couche.h"
 #include "forme.h"
 
-#define STATE_INIT 0
-#define STATE_ACTIVE 1
-#define STATE_INACTIVE 2
-
 Couche::Couche() {
   state = STATE_INIT;
 }

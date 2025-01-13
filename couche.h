@@ -13,8 +13,12 @@
 #ifndef COUCHE_H
 #define COUCHE_H
 
+#define STATE_INIT 0
+#define STATE_ACTIVE 1
+#define STATE_INACTIVE 2
+
+
 #include "forme.h"
-#include <cmath>
 
 const int MAX_FORMES = 5;
 

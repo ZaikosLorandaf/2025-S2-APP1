@@ -14,11 +14,12 @@ class Vecteur {
     int getCurrentSize();
     void increaseSize();
     bool vider();
-    bool removeCouche(int index);
+    Couche* removeCouche(int index);
+    Couche* getCouche(int index);
   private:
-    Couche* couches[INIT_VEC_SIZE]{nullptr};
+    Couche* itsCouches[INIT_VEC_SIZE]{NULL};
     int capacity{INIT_VEC_SIZE};
-    int currentSize{0};
+    int currentSizeIndex{0};
 };
 
 #endif
