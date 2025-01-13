@@ -11,10 +11,10 @@ class Vecteur {
     Vecteur();
     ~Vecteur();
     bool addCouche(Couche* c);
-    bool removeCouche(int index);
-    bool vider(int index);
-    bool getCurrentIndex();
+    int getCurrentSize();
     void increaseSize();
+    bool vider();
+    bool removeCouche(int index);
   private:
     Couche* couches[INIT_VEC_SIZE]{nullptr};
     int capacity{INIT_VEC_SIZE};
