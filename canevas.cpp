@@ -95,6 +95,21 @@ bool Canevas::translater(int deltaX, int deltaY) {
 void Canevas::afficher(ostream & s) {
   for (int i = 0; i < itsVecteur.getCurrentSize(); i++) {
     std::cout << "---- Couche " << i << " ----" << std::endl;
+    std::cout << "Etat: ";
+
+    switch (itsVecteur.getCouche(i)->getState()) {
+      case 0:
+        std::cout << "Initialised\n";
+        break;
+      case 1:
+        std::cout << "Active\n";
+        break;
+      case 2:
+        std::cout << "Inactive\n";
+        break;
+    };
+
+    std::cout << itsVecteur.getCouche(i)->getState() << std::endl;
     for (int j = 0; j < itsVecteur.getCouche(i)->getIndex(); j++)
       itsVecteur.getCouche(i)->getForme(j)->afficher(s);
   }
