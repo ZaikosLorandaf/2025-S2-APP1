@@ -11,15 +11,16 @@
 #include "canevas.h"
 #include "couche.h"
 
-Canevas::Canevas() {
-  itsVecteur = Vecteur();
+// sinon il est detruit a la fin de la func, donc c;est ca ou alors tu le met en pointeur et itsVecteur = new Vecteur();
+Canevas::Canevas(): itsVecteur{}{
 }
 
 Canevas::~Canevas() {
 }
 
 bool Canevas::ajouterCouche() {
-  Couche* c = itsVecteur.getCouche(itsVecteur.getCurrentSize());
+  Couche* c = new Couche{};
+  // add couche ?
   itsVecteur.addCouche(c);
   if (activeLayer == -1) {
     activerCouche(itsVecteur.getCurrentSize());
