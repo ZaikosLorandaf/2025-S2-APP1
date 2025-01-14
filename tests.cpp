@@ -10,11 +10,16 @@
 ********/
 
 #include "tests.h"
+#include "canevas.h"
 
 void Tests::tests_unitaires_formes() {
-  Rectangle rec(1,1,1,1);
-  Cercle circ(1,1,1);
-  Carre sq(1,1,1);
+  Canevas c;
+  Rectangle rec = *new Rectangle(1,1,1,1);
+  Cercle cir = *new Cercle(1,1,1);
+  Carre car = *new Carre(1,1,1);
+  c.ajouterCouche();
+  c.ajouterForme(rec);
+
 }
 
 void Tests::tests_unitaires_couche() {
