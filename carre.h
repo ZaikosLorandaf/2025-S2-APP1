@@ -12,6 +12,6 @@ class Carre: public Rectangle {
     Carre(int x, int y, int l);
     ~Carre();
 
-    void afficher(ostream &s);
+    void afficher(ostream &s) override;
 };
 #endif

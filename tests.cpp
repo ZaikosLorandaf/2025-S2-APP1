@@ -12,9 +12,9 @@
 #include "tests.h"
 
 void Tests::tests_unitaires_formes() {
-  Rectangle rec;
-  Cercle circ;
-  Carre sq;
+  Rectangle rec(1,1,1,1);
+  Cercle circ(1,1,1);
+  Carre sq(1,1,1);
 }
 
 void Tests::tests_unitaires_couche() {

@@ -31,8 +31,8 @@ void Rectangle::setWidth(int w) {
   itsWidth = w;
 }
 
-double Rectangle::area(int l, int w) {
-  return w*l;
+double Rectangle::aire() {
+  return itsLength * itsWidth;
 }
 
 void Rectangle::afficher(ostream &s) {
@@ -40,6 +40,6 @@ void Rectangle::afficher(ostream &s) {
     << ", y=" << getAncrage().y
     << ", l=" << getLength()
     << ", h=" << getWidth()
-    << ", aire=" << area(getLength(), getWidth())
+    << ", aire=" << aire()
     << ")" << std::endl;
 }

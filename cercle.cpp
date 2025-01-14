@@ -6,6 +6,9 @@ Cercle::Cercle(){}
 Cercle::Cercle(Coordonnee xy, int r):Forme(xy.x, xy.y) {
   setRadius(r);
 }
+Cercle::Cercle(int x, int y, int r):Forme(x, y) {
+  setRadius(r);
+}
 Cercle::~Cercle(){};
 
 int Cercle::getRadius() {
@@ -16,14 +19,14 @@ void Cercle::setRadius(int r){
   itsRadius = r;
 }
 
-double Cercle::area(int r) {
-  return r*r*M_PI;
+double Cercle::aire() {
+  return itsRadius*itsRadius*M_PI;
 }
 
 void Cercle::afficher(ostream &s) {
   s << "Cercle ( x=" << getAncrage().x
     << ", y=" << getAncrage().y
     << ", r=" << getRadius()
-    << ", aire=" << area(itsRadius)
+    << ", aire=" << aire()
     << ")" << std::endl;
 }

@@ -16,7 +16,7 @@ class Rectangle: public Forme {
     int getWidth();
     void setWidth(int w);
 
-    double area(int l, int w);
+    double aire() override;
 
     void afficher(ostream &s) override;
 
