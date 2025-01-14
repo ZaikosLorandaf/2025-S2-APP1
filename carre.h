@@ -10,5 +10,7 @@ class Carre: public Rectangle {
     Carre();
     Carre(Coordonnee xy, int l);
     ~Carre();
+
+    void afficher(ostream &s);
 };
 #endif

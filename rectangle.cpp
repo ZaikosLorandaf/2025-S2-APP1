@@ -30,3 +30,12 @@ void Rectangle::setWidth(int w) {
 unsigned int Rectangle::area(int l, int w) {
   return w*l;
 }
+
+void Rectangle::afficher(ostream &s) {
+  s << "Rectangle (x=" << getAncrage().x
+    << ", y=" << getAncrage().y
+    << ", l=" << getLength()
+    << ", h=" << getWidth()
+    << ", aire=" << area(getLength(), getWidth())
+    << ")" << std::endl;
+}

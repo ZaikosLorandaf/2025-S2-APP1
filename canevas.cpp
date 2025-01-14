@@ -11,62 +11,92 @@
 #include "canevas.h"
 #include "couche.h"
 
+#define NO_LAYER_ACTIVE -1
+
 Canevas::Canevas() {
-  itsVecteur = new Vecteur();
+  itsVecteur = Vecteur();
 }
 
 Canevas::~Canevas() {
-delete itsVecteur;
 }
 
 bool Canevas::ajouterCouche() {
-  Couche* newCouche = new Couche();
-  itsVecteur->addCouche(newCouche);
+  Couche* c = itsVecteur.getCouche(itsVecteur.getCurrentSize());
+  itsVecteur.addCouche(c);
+  if (activeLayer == -1) {
+    activerCouche(itsVecteur.getCurrentSize());
+    activeLayer = itsVecteur.getCurrentSize();
+    itsVecteur.getCouche(activeLayer)->setState(STATE_ACTIVE);
+  }
   return true;
 }
 
 bool Canevas::retirerCouche(int index) {
-  itsVecteur->removeCouche(index);
+  if (index < 0 || index > itsVecteur.getCurrentSize())
+    return false;
+  itsVecteur.removeCouche(index);
   return true;
 }
 
 bool Canevas::reinitialiser() {
-  delete itsVecteur;
-  itsVecteur = new Vecteur();
+  itsVecteur.~Vecteur();
+  itsVecteur = Vecteur();
+  activeLayer = NO_LAYER_ACTIVE;
   return true;
 }
 
 bool Canevas::reinitialiserCouche(int index) {
-  itsVecteur[index].getCouche(index)->reset();
-  itsVecteur[index].getCouche(index)->changeState(STATE_INIT);
-  return true;
+  if (itsVecteur.getCouche(index)->getState() == STATE_ACTIVE)
+    return false;
+  return itsVecteur.getCouche(index)->reset();
 }
 
 bool Canevas::activerCouche(int index) {
-  itsVecteur[index].getCouche(index)->changeState(STATE_ACTIVE);
-  return true;
+  if (activeLayer != NO_LAYER_ACTIVE)
+    return false;
+  return itsVecteur.getCouche(index)->setState(STATE_ACTIVE);
+  activeLayer = index;
 }
 
 bool Canevas::desactiverCouche(int index) {
-  itsVecteur[index].getCouche(index)->changeState(STATE_INACTIVE);
-  return true;
+  if (index != activeLayer)
+    return false;
+  activeLayer = NO_LAYER_ACTIVE;
+  return itsVecteur.getCouche(index)->setState(STATE_INACTIVE);
 }
 
 bool Canevas::ajouterForme(Forme *p_forme) {
+  if (activeLayer == NO_LAYER_ACTIVE)
+    return false;
+  itsVecteur.getCouche(activeLayer)->addForme(p_forme);
   return true;
 }
 
 bool Canevas::retirerForme(int index) {
+  if (activeLayer == NO_LAYER_ACTIVE)
+    return false;
+  itsVecteur.getCouche(activeLayer)->removeForme(index);
   return true;
 }
 
 double Canevas::aire() {
-  return 0.0;
+  int areaSum{0};
+  for (int i = 0; i < itsVecteur.getCurrentSize(); i++)
+    areaSum += itsVecteur.getCouche(i)->getArea();
+  return areaSum;
 }
 
 bool Canevas::translater(int deltaX, int deltaY) {
-  return true;
+  if (activeLayer == NO_LAYER_ACTIVE)
+    return false;
+  return itsVecteur.getCouche(activeLayer)->translation(deltaX, deltaY);
 }
 
 void Canevas::afficher(ostream & s) {
+  for (int i = 0; i < itsVecteur.getCurrentSize(); i++) {
+    std::cout << "---- Couche " << i << " ----" << std::endl;
+    for (int j = 0; j < itsVecteur.getCouche(i)->getIndex(); j++)
+      itsVecteur.getCouche(i)->getForme(j)->afficher(s);
+  }
 }
+

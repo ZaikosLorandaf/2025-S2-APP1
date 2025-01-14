@@ -16,6 +16,7 @@ class Vecteur {
     bool vider();
     Couche* removeCouche(int index);
     Couche* getCouche(int index);
+    void destroyerOfLayers();
   private:
     Couche* itsCouches[INIT_VEC_SIZE]{NULL};
     int capacity{INIT_VEC_SIZE};

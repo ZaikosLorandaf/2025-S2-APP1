@@ -13,11 +13,11 @@ class Cercle: public Forme {
     void setRadius(int r);
 
     double area(int r);
-
+    void afficher(ostream &s);
   private:
-    int itsRadius;
-    int itsX;
-    int itsY;
+      int itsRadius;
+      int itsX;
+      int itsY;
 };
 
 #endif

@@ -32,7 +32,8 @@ class Couche {
     double getArea();
     bool translation(int deltaX, int deltaY);
     bool reset();
-    bool changeState(int s);
+    bool setState(int s);
+    int getIndex();
   private:
     Forme* formes[MAX_FORMES];
     int indexFormes {0};

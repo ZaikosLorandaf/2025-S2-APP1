@@ -17,6 +17,7 @@ class Rectangle: public Forme {
 
     unsigned int area(int l, int w);
 
+    void afficher(ostream &s);
   private:
     int itsLength;
     int itsWidth;

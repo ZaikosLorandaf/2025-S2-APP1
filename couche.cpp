@@ -20,8 +20,6 @@ int Couche::getState(){
 }
 
 bool Couche::addForme(Forme* f) {
-  if (state == STATE_INACTIVE)
-    return false;
   if (indexFormes > MAX_FORMES)
     return false;
   formes[indexFormes] = f;
@@ -47,8 +45,6 @@ Forme* Couche::getForme(int index) {
 }
 
 double Couche::getArea() {
-  if (state == STATE_INACTIVE)
-    return false;
   double sum{0};
   for (int i = 0; i < indexFormes; i++)
     sum += formes[i]->aire();
@@ -56,8 +52,6 @@ double Couche::getArea() {
 }
 
 bool Couche::translation(int deltaX, int deltaY) {
-  if (state == STATE_INACTIVE)
-    return false;
   for (int i = 0; i < indexFormes; i++) {
     formes[i]->translater(deltaX, deltaY);
   };
@@ -65,14 +59,19 @@ bool Couche::translation(int deltaX, int deltaY) {
 }
 
 bool Couche::reset() {
+  for (int i = 0; i < MAX_FORMES; i++)
+    formes[i] = NULL;
   state = STATE_INIT;
   return true;
 };
 
-bool Couche::changeState(int s) {
+bool Couche::setState(int s) {
   if (s > 2 || s < 0)
     return false;
   state = s;
   return true;
 }
 
+int Couche::getIndex() {
+  return indexFormes;
+}

@@ -62,4 +62,3 @@ Couche* Vecteur::getCouche(int index) {
   return itsCouches[index];
 }
 
-

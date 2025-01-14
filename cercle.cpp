@@ -19,3 +19,11 @@ void Cercle::setRadius(int r){
 double Cercle::area(int r) {
   return r*r*M_PI;
 }
+
+void Cercle::afficher(ostream &s) {
+  s << "Cercle ( x=" << getAncrage().x
+    << ", y=" << getAncrage().y
+    << ", r=" << getRadius()
+    << ", aire=" << area(itsRadius)
+    << ")" << std::endl;
+}

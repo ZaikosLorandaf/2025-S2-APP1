@@ -42,8 +42,8 @@ class Canevas
     void afficher(ostream & s);
 
   private:
-    Vecteur* itsVecteur;
-    Couche** itsCouche;
+    Vecteur itsVecteur;
+    int activeLayer{-1};
 };
 
 #endif
