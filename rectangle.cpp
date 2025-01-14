@@ -8,6 +8,10 @@ Rectangle::Rectangle(Coordonnee xy, int l, int w):Forme(xy.x, xy.y) {
   setLength(l);
   setWidth(w);
 }
+Rectangle::Rectangle(int x, int y, int l, int w):Forme(x, y) {
+  setLength(l);
+  setWidth(w);
+}
 Rectangle::~Rectangle(){}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -27,7 +31,7 @@ void Rectangle::setWidth(int w) {
   itsWidth = w;
 }
 
-unsigned int Rectangle::area(int l, int w) {
+double Rectangle::area(int l, int w) {
   return w*l;
 }
 

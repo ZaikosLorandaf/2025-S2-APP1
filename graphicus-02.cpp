@@ -6,15 +6,15 @@
  * Date : ...
  * Description: gestionnaire de tests pour l'application Graphicus. Ce
  *    fichier fait partie de la distribution de Graphicus.
-********/
+ ********/
 #include "tests.h"
 
-using namespace std;
 
 int main() {
-   Tests tests;
 
-   tests.tests_application();
-   return 0;
+
+  Tests tests;
+  tests.tests_unitaires_canevas();
+  return 0;
 }
 

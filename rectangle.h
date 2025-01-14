@@ -7,6 +7,7 @@ class Rectangle: public Forme {
   public:
     Rectangle();
     Rectangle(Coordonnee xy, int l, int w);
+    Rectangle(int x, int y, int l, int w);
     ~Rectangle();
 
     int getLength();
@@ -15,13 +16,12 @@ class Rectangle: public Forme {
     int getWidth();
     void setWidth(int w);
 
-    unsigned int area(int l, int w);
+    double area(int l, int w);
 
-    void afficher(ostream &s);
+    void afficher(ostream &s) override;
+
   private:
     int itsLength;
     int itsWidth;
-    int itsX;
-    int itsY;
 };
 #endif

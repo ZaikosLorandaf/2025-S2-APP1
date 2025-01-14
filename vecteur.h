@@ -4,7 +4,7 @@
 #include "couche.h"
 #include "forme.h"
 
-#define INIT_VEC_SIZE 1
+#define INIT_VEC_SIZE 2
 
 class Vecteur {
   public:

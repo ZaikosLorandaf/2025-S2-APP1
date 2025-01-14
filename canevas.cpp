@@ -11,8 +11,6 @@
 #include "canevas.h"
 #include "couche.h"
 
-#define NO_LAYER_ACTIVE -1
-
 Canevas::Canevas() {
   itsVecteur = Vecteur();
 }
@@ -93,6 +91,12 @@ bool Canevas::translater(int deltaX, int deltaY) {
 }
 
 void Canevas::afficher(ostream & s) {
+  if (itsVecteur.getCurrentSize() == 1
+      && itsVecteur.getCouche(0)->getState() == STATE_INIT) {
+    std::cout << "---- Aucune Couche ----\n";
+    return;
+  }
+
   for (int i = 0; i < itsVecteur.getCurrentSize(); i++) {
     std::cout << "---- Couche " << i << " ----" << std::endl;
     std::cout << "Etat: ";

@@ -5,30 +5,25 @@
  * Modifie par : ...
  * Date : ...
  * Description: Implementation des methodes des classes decrites dans
- *    tests.h.  Ce fichier peut etre adapte a vos besoins de tests. 
+ *    tests.h.  Ce fichier peut etre adapte a vos besoins de tests.
  *    Ce fichier fait partie de la distribution de Graphicus.
 ********/
 
 #include "tests.h"
 
-void Tests::tests_unitaires_formes()
-{
-   // Tests sur les formes geometriques
+void Tests::tests_unitaires_formes() {
+  Rectangle rec;
+  Cercle circ;
+  Carre sq;
 }
 
-void Tests::tests_unitaires_couche()
-{
-   // Tests sur la classe Couche
+void Tests::tests_unitaires_couche() {
 }
 
-void Tests::tests_unitaires_vecteur()
-{
-   // Tests sur la classe Vecteur
+void Tests::tests_unitaires_vecteur() {
 }
 
-void Tests::tests_unitaires_canevas()
-{
-   // Tests sur la classe Canevas
+void Tests::tests_unitaires_canevas() {
 }
 
 void Tests::tests_unitaires()
@@ -49,12 +44,12 @@ void Tests::tests_application()
 
 void Tests::tests_application_cas_01()
 {
-   cout << "TESTS APPLICATION (CAS 01)" << endl; 
+  std::cout << "TESTS APPLICATION (CAS 01)" << std::endl;
    // Il faut ajouter les operations realisant ce scenario de test.
 }
 
 void Tests::tests_application_cas_02()
 {
-   cout << "TESTS APPLICATION (CAS 02)" << endl;  
+  std::cout << "TESTS APPLICATION (CAS 02)" << std::endl;
     // Il faut ajouter les operations realisant ce scenario de test.
 }

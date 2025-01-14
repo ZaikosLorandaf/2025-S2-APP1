@@ -17,6 +17,8 @@
 #include "couche.h"
 #include "vecteur.h"
 
+#define NO_LAYER_ACTIVE -1
+
 using namespace std;
 
 class Canevas

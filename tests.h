@@ -11,9 +11,11 @@
 #define TESTS_H
 
 #include <iostream>
+#include "forme.h"
 #include "canevas.h"
-
-using namespace std;
+#include "rectangle.h"
+#include "carre.h"
+#include "cercle.h"
 
 class Tests
 {
