@@ -2,7 +2,6 @@
 #include "couche.h"
 
 Vecteur::Vecteur() {
-  Couche* couches = new Couche[capacity];
 }
 
 Vecteur::~Vecteur() {
