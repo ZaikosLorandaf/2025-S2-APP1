@@ -1,6 +1,5 @@
 #include "cercle.h"
 #include <cmath>
-#include <math.h>
 
 Cercle::Cercle(){}
 Cercle::Cercle(Coordonnee xy, int r):Forme(xy.x, xy.y) {

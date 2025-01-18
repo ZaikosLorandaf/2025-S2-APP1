@@ -27,16 +27,16 @@ class Canevas
     Canevas();
     ~Canevas();
 
-    bool ajouterCouche();
-    bool retirerCouche(int index);
+    bool addLayerCan();
+    bool removeLayerCan(int index);
 
-    bool reinitialiser();
-    bool reinitialiserCouche(int index);
+    bool reset();
+    bool resetLayer(int index);
 
-    bool activerCouche(int index);
-    bool desactiverCouche(int index);
+    bool activateLayer(int index);
+    bool deactivateLayer(int index);
 
-    bool ajouterForme(Forme *p_forme);
+    bool addShape(Forme *p_forme);
     bool retirerForme(int index);
 
     double aire();
@@ -44,7 +44,7 @@ class Canevas
     void afficher(ostream & s);
 
   private:
-    Vecteur itsVecteur;
+    Vector vector;
     int activeLayer{-1};
 };
 

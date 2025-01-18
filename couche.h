@@ -22,10 +22,10 @@
 
 const int MAX_FORMES = 5;
 
-class Couche {
+class Layer {
   public:
-    Couche();
-    int getState();
+    Layer();
+    int getStateLay();
     bool addForme(Forme* f);
     Forme* removeForme(int index);
     Forme* getForme(int index);
@@ -36,8 +36,8 @@ class Couche {
     int getIndex();
   private:
     Forme* formes[MAX_FORMES];
-    int indexFormes {0};
-    int state;
+    int indexFormes;
+    int state{0};
 };
 
 #endif

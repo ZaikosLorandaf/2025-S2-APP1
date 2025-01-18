@@ -1,63 +1,64 @@
 #include "vecteur.h"
-#include "couche.h"
 
-Vecteur::Vecteur() {
+Vector::Vector() {
+  capacity = INIT_VEC_SIZE;
+  currentMaxIndex = -1; // Since indexes at every layer added
+  vector = new Layer*[capacity];
 }
-
-Vecteur::~Vecteur() {
+Vector::~Vector() {
   vider();
-  delete[] *itsCouches;
+  delete[] vector;
 }
 
-bool Vecteur::addCouche(Couche* c) {
+
+bool Vector::addLayerVec(Layer* c) {
   if (c == NULL)
     return false;
-  if (currentSizeIndex == capacity)
+  if (currentMaxIndex == capacity)
     increaseSize();
-  currentSizeIndex++;
-  itsCouches[currentSizeIndex] = c;
+  vector[currentMaxIndex] = c;
+  currentMaxIndex++;
   return true;
 }
 
-void Vecteur::increaseSize() {
+void Vector::increaseSize() {
   capacity *= 2;
-  Couche* newCouche = new Couche[capacity];
-  for (int i = 0; i <= currentSizeIndex; i++)
-    newCouche[i] = *itsCouches[i];
-  *itsCouches = newCouche;
-  delete[] newCouche;
+  Layer newCouche[capacity];
+  for (int i = 0; i <= currentMaxIndex; i++)
+    newCouche[i] = *vector[i];
+  *vector = newCouche;
 }
 
-int Vecteur::getCurrentSize() {
-  return currentSizeIndex;
+int Vector::getCurrentSize() {
+  return currentMaxIndex;
 }
 
-bool Vecteur::vider() {
-  for (int i = 0; i < currentSizeIndex; i++)
-    itsCouches[i] = NULL;
+bool Vector::vider() {
+  for (int i = 0; i < currentMaxIndex; i++)
+    vector[i] = NULL;
   capacity = INIT_VEC_SIZE;
-  Couche* newCouche = new Couche[capacity];
-  *itsCouches = newCouche;
+  Layer* newCouche = new Layer[capacity];
+  *vector = newCouche;
   delete[] newCouche;
   return true;
 }
 
-Couche* Vecteur::removeCouche(int index) {
-  if (index < 0 || index > currentSizeIndex)
+Layer* Vector::removeLayer(int index) {
+  if (index < 0 || index > currentMaxIndex)
     return NULL;
-  Couche* c = itsCouches[index];
-  if (index == currentSizeIndex) {
-    itsCouches[index] = NULL;
+  Layer* c = vector[index];
+  if (index == currentMaxIndex) {
+    vector[index] = NULL;
     return c;
   }
-  for (int i = index; i < currentSizeIndex; i++)
-    itsCouches[i] = itsCouches[i+1];
-  itsCouches[currentSizeIndex] = NULL;
-  currentSizeIndex--;
+  for (int i = index; i < currentMaxIndex; i++)
+    vector[i] = vector[i+1];
+  vector[currentMaxIndex] = NULL;
+  currentMaxIndex--;
   return c;
 }
 
-Couche* Vecteur::getCouche(int index) {
-  return itsCouches[index];
+Layer* Vector::getLayer(int index) {
+  return vector[index];
 }
 

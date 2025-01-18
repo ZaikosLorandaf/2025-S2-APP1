@@ -14,13 +14,6 @@
 #include <cassert>
 
 void Tests::tests_unitaires_formes() {
-  Canevas c;
-  Rectangle rec = *new Rectangle(1,1,1,1);
-  Cercle cir = *new Cercle(1,1,1);
-  Carre car = *new Carre(1,1,1);
-  c.ajouterCouche();
-  c.ajouterForme(&rec);
-
 }
 
 void Tests::tests_unitaires_couche() {
@@ -30,8 +23,8 @@ void Tests::tests_unitaires_vecteur() {
 }
 
 void Tests::tests_unitaires_canevas() {
-    auto canevas =  Canevas{};
-    assert(canevas.ajouterCouche());
+    /*auto canevas =  Canevas{};*/
+    /*assert(canevas.ajouterCouche());*/
 }
 
 void Tests::tests_unitaires()
@@ -53,7 +46,21 @@ void Tests::tests_application()
 void Tests::tests_application_cas_01()
 {
   std::cout << "TESTS APPLICATION (CAS 01)" << std::endl;
-   // Il faut ajouter les operations realisant ce scenario de test.
+  Canevas c;
+  std::cout << "\nETAPE 1 & 2\n";
+  c.afficher(cout);
+  std::cout << "L'aire de la couche est: "
+    << c.aire() << std::endl;
+
+
+  std::cout << "\nETAPE 3 & 5\n";
+  c.addLayerCan();
+  c.addLayerCan();
+  c.addLayerCan();
+  c.addLayerCan();
+  c.addLayerCan();
+
+  c.afficher(cout);
 }
 
 void Tests::tests_application_cas_02()

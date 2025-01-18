@@ -11,15 +11,15 @@
 #include "couche.h"
 #include "forme.h"
 
-Couche::Couche() {
+Layer::Layer() {
   state = STATE_INIT;
 }
 
-int Couche::getState(){
+int Layer::getStateLay() {
   return state;
 }
 
-bool Couche::addForme(Forme* f) {
+bool Layer::addForme(Forme* f) {
   if (indexFormes > MAX_FORMES)
     return false;
   formes[indexFormes] = f;
@@ -27,7 +27,7 @@ bool Couche::addForme(Forme* f) {
   return true;
 }
 
-Forme* Couche::removeForme(int index) {
+Forme* Layer::removeForme(int index) {
   if (index >= indexFormes)
     return NULL;
   Forme* f = formes[index];
@@ -38,40 +38,40 @@ Forme* Couche::removeForme(int index) {
   return f;
 }
 
-Forme* Couche::getForme(int index) {
+Forme* Layer::getForme(int index) {
   if (index > indexFormes)
     return NULL;
   return formes[index];
 }
 
-double Couche::getArea() {
+double Layer::getArea() {
   double sum{0};
   for (int i = 0; i < indexFormes; i++)
     sum += formes[i]->aire();
   return sum;
 }
 
-bool Couche::translation(int deltaX, int deltaY) {
+bool Layer::translation(int deltaX, int deltaY) {
   for (int i = 0; i < indexFormes; i++) {
     formes[i]->translater(deltaX, deltaY);
   };
   return true;
 }
 
-bool Couche::reset() {
+bool Layer::reset() {
   for (int i = 0; i < MAX_FORMES; i++)
     formes[i] = NULL;
   state = STATE_INIT;
   return true;
 };
 
-bool Couche::setState(int s) {
+bool Layer::setState(int s) {
   if (s > 2 || s < 0)
     return false;
   state = s;
   return true;
 }
 
-int Couche::getIndex() {
+int Layer::getIndex() {
   return indexFormes;
 }

@@ -6,21 +6,22 @@
 
 #define INIT_VEC_SIZE 2
 
-class Vecteur {
+class Vector {
   public:
-    Vecteur();
-    ~Vecteur();
-    bool addCouche(Couche* c);
+    Vector();
+    ~Vector();
+    bool addLayerVec(Layer* c);
     int getCurrentSize();
     void increaseSize();
     bool vider();
-    Couche* removeCouche(int index);
-    Couche* getCouche(int index);
+    Layer* removeLayer(int index);
+    Layer* getLayer(int index);
     void destroyerOfLayers();
+    int getTempCapa();
+    Layer** vector;
   private:
-    Couche* itsCouches[INIT_VEC_SIZE]{NULL};
-    int capacity{INIT_VEC_SIZE};
-    int currentSizeIndex{0};
+    int capacity;
+    int currentMaxIndex;
 };
 
 #endif
