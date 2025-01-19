@@ -11,22 +11,19 @@
 #include "canevas.h"
 #include "couche.h"
 #include "vecteur.h"
+#include <csignal>
 
-Canevas::Canevas() {
-  Vector vector = *new Vector();
-}
-
-Canevas::~Canevas() {
-}
+Canevas::Canevas(): vector() {}
+Canevas::~Canevas() {}
 
 bool Canevas::addLayerCan() {
-  Layer* lay = new Layer();
-  vector.addLayerVec(lay);
-  if (activeLayer == -1) {
-    activeLayer = vector.getCurrentSize();
-    activateLayer(activeLayer);
-    vector.getLayer(activeLayer)->setState(STATE_ACTIVE);
-  }
+  Layer* l = new Layer();
+  vector.addLayerVec(l);
+  /*if (activeLayer == -1) {*/
+  /*  activeLayer = vector.getCurrentSize();*/
+  /*  activateLayer(activeLayer);*/
+  /*  vector.getLayer(activeLayer)->setState(STATE_ACTIVE);*/
+  /*}*/
   return true;
 }
 
@@ -51,10 +48,11 @@ bool Canevas::resetLayer(int index) {
 }
 
 bool Canevas::activateLayer(int index) {
-  if (activeLayer != NO_LAYER_ACTIVE)
-    return false;
-  return vector.getLayer(index)->setState(STATE_ACTIVE);
+  /*if (activeLayer != NO_LAYER_ACTIVE)*/
+  /*  return false;*/
+  deactivateLayer(activeLayer);
   activeLayer = index;
+  return vector.getLayer(index)->setState(STATE_ACTIVE);
 }
 
 bool Canevas::deactivateLayer(int index) {
@@ -92,17 +90,15 @@ bool Canevas::translater(int deltaX, int deltaY) {
 }
 
 void Canevas::afficher(ostream & s) {
-  if (vector.getCurrentSize() == 1
-      && vector.getLayer(0)->getStateLay() == STATE_INIT) {
+  if (vector.getCurrentSize() == -1) {
     std::cout << "---- Aucune Couche ----\n";
     return;
   }
 
-  for (int i = 0; i < vector.getCurrentSize(); i++) {
+  for (int i = 0; i <= vector.getCurrentSize(); i++) {
     std::cout << "---- Couche " << i << " ----" << std::endl;
     std::cout << "Etat: ";
 
-    std::cout << vector.getLayer(i)->getStateLay() << std::endl;
     switch (vector.getLayer(i)->getStateLay()) {
       case 0:
         std::cout << "Initialised\n";
@@ -115,9 +111,12 @@ void Canevas::afficher(ostream & s) {
         break;
     };
 
-    std::cout << vector.getLayer(i)->getStateLay() << std::endl;
-    for (int j = 0; j < vector.getLayer(i)->getIndex(); j++)
-      vector.getLayer(i)->getForme(j)->afficher(s);
+    if (vector.getLayer(i)->getIndex() == -1) {
+      std::cout << "Couche: vide" << std::endl;
+    } else {
+      for (int j = 0; j < vector.getLayer(i)->getIndex(); j++)
+        vector.getLayer(i)->getForme(j)->afficher(s);
+    }
   }
 }
 

@@ -36,8 +36,9 @@ class Layer {
     int getIndex();
   private:
     Forme* formes[MAX_FORMES];
-    int indexFormes;
+    int indexFormes = -1;
     int state{0};
 };
 
 #endif
+

@@ -2,22 +2,22 @@
 
 Vector::Vector() {
   capacity = INIT_VEC_SIZE;
-  currentMaxIndex = -1; // Since indexes at every layer added
+  currentMaxIndex = -1; // Start with empty vector
   vector = new Layer*[capacity];
 }
+
 Vector::~Vector() {
   vider();
   delete[] vector;
 }
 
-
 bool Vector::addLayerVec(Layer* c) {
   if (c == NULL)
     return false;
-  if (currentMaxIndex == capacity)
+  if (currentMaxIndex == capacity-1)
     increaseSize();
-  vector[currentMaxIndex] = c;
   currentMaxIndex++;
+  vector[currentMaxIndex] = c;
   return true;
 }
 
