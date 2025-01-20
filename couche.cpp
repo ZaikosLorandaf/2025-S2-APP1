@@ -19,11 +19,11 @@ int Layer::getStateLay() {
   return state;
 }
 
-bool Layer::addForme(Forme* f) {
-  if (indexFormes > MAX_FORMES)
+bool Layer::addShapeLay(Forme* f) {
+  if (indexFormes >= MAX_FORMES)
     return false;
-  formes[indexFormes] = f;
   indexFormes++;
+  formes[indexFormes] = f;
   return true;
 }
 
@@ -38,7 +38,7 @@ Forme* Layer::removeForme(int index) {
   return f;
 }
 
-Forme* Layer::getForme(int index) {
+Forme* Layer::getShapeLay(int index) {
   if (index > indexFormes)
     return NULL;
   return formes[index];

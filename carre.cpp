@@ -10,7 +10,7 @@ Carre::~Carre(){}
 
 
 void Carre::afficher(ostream &s) {
-  s << "Rectangle (x=" << getAncrage().x
+  s << "Carre (x=" << getAncrage().x
     << ", y=" << getAncrage().y
     << ", aire=" << aire()
     << ")" << std::endl;

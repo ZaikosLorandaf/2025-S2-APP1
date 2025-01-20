@@ -26,9 +26,9 @@ class Layer {
   public:
     Layer();
     int getStateLay();
-    bool addForme(Forme* f);
+    bool addShapeLay(Forme* f);
     Forme* removeForme(int index);
-    Forme* getForme(int index);
+    Forme* getShapeLay(int index);
     double getArea();
     bool translation(int deltaX, int deltaY);
     bool reset();
@@ -36,7 +36,7 @@ class Layer {
     int getIndex();
   private:
     Forme* formes[MAX_FORMES];
-    int indexFormes = -1;
+    int indexFormes{-1};
     int state{0};
 };
 

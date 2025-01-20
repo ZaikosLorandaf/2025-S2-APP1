@@ -48,8 +48,6 @@ bool Canevas::resetLayer(int index) {
 }
 
 bool Canevas::activateLayer(int index) {
-  /*if (activeLayer != NO_LAYER_ACTIVE)*/
-  /*  return false;*/
   deactivateLayer(activeLayer);
   activeLayer = index;
   return vector.getLayer(index)->setState(STATE_ACTIVE);
@@ -58,6 +56,8 @@ bool Canevas::activateLayer(int index) {
 bool Canevas::deactivateLayer(int index) {
   if (index != activeLayer)
     return false;
+  if (index == NO_LAYER_ACTIVE)
+    return true;
   activeLayer = NO_LAYER_ACTIVE;
   return vector.getLayer(index)->setState(STATE_INACTIVE);
 }
@@ -65,7 +65,7 @@ bool Canevas::deactivateLayer(int index) {
 bool Canevas::addShape(Forme *p_forme) {
   if (activeLayer == NO_LAYER_ACTIVE)
     return false;
-  vector.getLayer(activeLayer)->addForme(p_forme);
+  vector.getLayer(activeLayer)->addShapeLay(p_forme);
   return true;
 }
 
@@ -96,7 +96,7 @@ void Canevas::afficher(ostream & s) {
   }
 
   for (int i = 0; i <= vector.getCurrentSize(); i++) {
-    std::cout << "---- Couche " << i << " ----" << std::endl;
+    std::cout << std::endl << "---- Couche " << i << " ----" << std::endl;
     std::cout << "Etat: ";
 
     switch (vector.getLayer(i)->getStateLay()) {
@@ -114,8 +114,8 @@ void Canevas::afficher(ostream & s) {
     if (vector.getLayer(i)->getIndex() == -1) {
       std::cout << "Couche: vide" << std::endl;
     } else {
-      for (int j = 0; j < vector.getLayer(i)->getIndex(); j++)
-        vector.getLayer(i)->getForme(j)->afficher(s);
+      for (int j = 0; j <= vector.getLayer(i)->getIndex(); j++)
+        vector.getLayer(i)->getShapeLay(j)->afficher(s);
     }
   }
 }
