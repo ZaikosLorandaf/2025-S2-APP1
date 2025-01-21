@@ -6,10 +6,10 @@
 
 #define INIT_VEC_SIZE 2
 
-class Vector {
+class MyVector {
   public:
-    Vector();
-    ~Vector();
+    MyVector();
+    ~MyVector();
     bool addLayerVec(Layer* c);
     int getCurrentSize();
     void increaseSize();

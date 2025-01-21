@@ -1,17 +1,17 @@
 #include "vecteur.h"
 
-Vector::Vector() {
+MyVector::MyVector() {
   capacity = INIT_VEC_SIZE;
   currentMaxIndex = -1; // Start with empty vector
   vector = new Layer*[capacity];
 }
 
-Vector::~Vector() {
+MyVector::~MyVector() {
   vider();
   delete[] vector;
 }
 
-bool Vector::addLayerVec(Layer* c) {
+bool MyVector::addLayerVec(Layer* c) {
   if (c == NULL)
     return false;
   if (currentMaxIndex == capacity-1)
@@ -21,19 +21,20 @@ bool Vector::addLayerVec(Layer* c) {
   return true;
 }
 
-void Vector::increaseSize() {
+void MyVector::increaseSize() {
   capacity *= 2;
-  Layer newCouche[capacity];
+  Layer** newTemp = new Layer*[capacity];
   for (int i = 0; i <= currentMaxIndex; i++)
-    newCouche[i] = *vector[i];
-  *vector = newCouche;
+    newTemp[i] = vector[i];
+  delete[] vector;
+  vector = newTemp;
 }
 
-int Vector::getCurrentSize() {
+int MyVector::getCurrentSize() {
   return currentMaxIndex;
 }
 
-bool Vector::vider() {
+bool MyVector::vider() {
   for (int i = 0; i < currentMaxIndex; i++)
     vector[i] = NULL;
   capacity = INIT_VEC_SIZE;
@@ -43,7 +44,7 @@ bool Vector::vider() {
   return true;
 }
 
-Layer* Vector::removeLayer(int index) {
+Layer* MyVector::removeLayer(int index) {
   if (index < 0 || index > currentMaxIndex)
     return NULL;
   Layer* c = vector[index];
@@ -58,7 +59,7 @@ Layer* Vector::removeLayer(int index) {
   return c;
 }
 
-Layer* Vector::getLayer(int index) {
+Layer* MyVector::getLayer(int index) {
   return vector[index];
 }
 

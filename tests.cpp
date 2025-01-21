@@ -77,8 +77,8 @@ void Tests::tests_application_cas_01()
   c.display(cout);
 
   //~~~~~~~~~~~ Step 9 ~~~~~~~~~~~//
-  /*std::cout << "L'aire du canevas est: "*/
-  /*  << c.aire() << std::endl;*/
+  std::cout << "L'aire du canevas est: "
+    << c.area() << std::endl;
 }
 
 void Tests::tests_application_cas_02()

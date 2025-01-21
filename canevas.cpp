@@ -25,8 +25,8 @@ bool Canevas::removeLayerCan(int index) {
 }
 
 bool Canevas::reset() {
-  vector.~Vector();
-  vector = Vector();
+  vector.~MyVector();
+  vector = MyVector();
   activeLayer = NO_LAYER_ACTIVE;
   return true;
 }
@@ -106,7 +106,7 @@ void Canevas::display(ostream & s) {
     if (vector.getLayer(i)->getIndex() == -1) {
       s << "Couche: vide" << std::endl;
     } else {
-      for (int j = 0; j < vector.getLayer(i)->getIndex(); j++)
+      for (int j = 0; j <= vector.getLayer(i)->getIndex(); j++)
         vector.getLayer(i)->getShapeLay(j)->display(s);
     }
 
