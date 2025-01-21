@@ -1,14 +1,15 @@
 #include "rectangle.h"
+#include "forme.h"
 
 Rectangle::Rectangle(){
   setLength(1);
-  setAncrage(ancrage);
+  setAnchor(anchor);
 }
-Rectangle::Rectangle(Coordonnee xy, int l, int w):Forme(xy.x, xy.y) {
+Rectangle::Rectangle(Coordonnee xy, int l, int w):Shape(xy.x, xy.y) {
   setLength(l);
   setWidth(w);
 }
-Rectangle::Rectangle(int x, int y, int l, int w):Forme(x, y) {
+Rectangle::Rectangle(int x, int y, int l, int w):Shape(x, y) {
   setLength(l);
   setWidth(w);
 }
@@ -31,15 +32,15 @@ void Rectangle::setWidth(int w) {
   itsWidth = w;
 }
 
-double Rectangle::aire() {
+double Rectangle::area() {
   return itsLength * itsWidth;
 }
 
-void Rectangle::afficher(ostream &s) {
-  s << "Rectangle (x=" << getAncrage().x
-    << ", y=" << getAncrage().y
+void Rectangle::display(ostream &s) {
+  s << "Rectangle (x=" << getAnchor().x
+    << ", y=" << getAnchor().y
     << ", l=" << getLength()
     << ", h=" << getWidth()
-    << ", aire=" << aire()
+    << ", aire=" << area()
     << ")" << std::endl;
 }

@@ -36,12 +36,12 @@ class Canevas
     bool activateLayer(int index);
     bool deactivateLayer(int index);
 
-    bool addShape(Forme *p_forme);
+    bool addShape(Shape *p_forme);
     bool retirerForme(int index);
 
-    double aire();
+    double area();
     bool translater(int deltaX, int deltaY);
-    void afficher(ostream & s);
+    void display(ostream & s);
 
   private:
     Vector vector;

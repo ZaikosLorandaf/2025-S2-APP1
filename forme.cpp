@@ -1,30 +1,21 @@
-/********
- * Fichier: forme.cpp
- * Auteurs: C.-A. Brunet
- * Date: 13 juin 2024 (creation)
- * Description: Implementation des methodes des classes decrites dans
- *    forme.h. Les methodes de la classe Forme ne doivent pas etre
- *    modifiees. Ce fichier fait partie de la distribution de Graphicus.
-********/
-
 #include "forme.h"
 
-Forme::Forme(int x1, int y1) {
-  ancrage.x = x1;
-  ancrage.y = y1;
+Shape::Shape(int x1, int y1) {
+  anchor.x = x1;
+  anchor.y = y1;
 }
 
-Forme::~Forme() { }
+Shape::~Shape() { }
 
-void Forme::translater(int deltaX, int deltaY) {
-   ancrage.x += deltaX;
-   ancrage.y += deltaY;
+void Shape::moveOrigin(int deltaX, int deltaY) {
+   anchor.x += deltaX;
+   anchor.y += deltaY;
 }
 
-Coordonnee Forme::getAncrage() {
-   return ancrage;
+Coordonnee Shape::getAnchor() {
+   return anchor;
 }
 
-void Forme::setAncrage(Coordonnee c) {
-   ancrage = c;
+void Shape::setAnchor(Coordonnee c) {
+   anchor = c;
 }

@@ -1,13 +1,3 @@
-/********
- * Fichier: canevas.cpp
- * Auteurs: C.-A. Brunet
- * Date: 13 juin 2024 (creation)
- * Modifie par : ...
- * Date : ...
- * Description: Implementation des methodes des classes decrites dans
- *    canevas.h. Ce fichier fait partie de la distribution de Graphicus.
- ********/
-
 #include "canevas.h"
 #include "couche.h"
 #include "vecteur.h"
@@ -62,7 +52,7 @@ bool Canevas::deactivateLayer(int index) {
   return vector.getLayer(index)->setState(STATE_INACTIVE);
 }
 
-bool Canevas::addShape(Forme *p_forme) {
+bool Canevas::addShape(Shape *p_forme) {
   if (activeLayer == NO_LAYER_ACTIVE)
     return false;
   vector.getLayer(activeLayer)->addShapeLay(p_forme);
@@ -76,7 +66,7 @@ bool Canevas::retirerForme(int index) {
   return true;
 }
 
-double Canevas::aire() {
+double Canevas::area() {
   int areaSum{0};
   for (int i = 0; i < vector.getCurrentSize(); i++)
     areaSum += vector.getLayer(i)->getArea();
@@ -89,34 +79,37 @@ bool Canevas::translater(int deltaX, int deltaY) {
   return vector.getLayer(activeLayer)->translation(deltaX, deltaY);
 }
 
-void Canevas::afficher(ostream & s) {
+void Canevas::display(ostream & s) {
   if (vector.getCurrentSize() == -1) {
-    std::cout << "---- Aucune Couche ----\n";
+    s << "---- Aucune Couche ----\n";
     return;
   }
 
   for (int i = 0; i <= vector.getCurrentSize(); i++) {
-    std::cout << std::endl << "---- Couche " << i << " ----" << std::endl;
-    std::cout << "Etat: ";
+    s << std::endl << "---- Couche " << i << " ----" << std::endl;
 
+    /*vector.getLayer(i)->display(s);*/
+
+    s << "Etat: ";
     switch (vector.getLayer(i)->getStateLay()) {
       case 0:
-        std::cout << "Initialised\n";
+        s << "Initialised\n";
         break;
       case 1:
-        std::cout << "Active\n";
+        s << "Active\n";
         break;
       case 2:
-        std::cout << "Inactive\n";
+        s << "Inactive\n";
         break;
     };
 
     if (vector.getLayer(i)->getIndex() == -1) {
-      std::cout << "Couche: vide" << std::endl;
+      s << "Couche: vide" << std::endl;
     } else {
-      for (int j = 0; j <= vector.getLayer(i)->getIndex(); j++)
-        vector.getLayer(i)->getShapeLay(j)->afficher(s);
+      for (int j = 0; j < vector.getLayer(i)->getIndex(); j++)
+        vector.getLayer(i)->getShapeLay(j)->display(s);
     }
+
   }
 }
 

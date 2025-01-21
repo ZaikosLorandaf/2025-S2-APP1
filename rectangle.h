@@ -3,7 +3,7 @@
 
 #include "forme.h"
 
-class Rectangle: public Forme {
+class Rectangle: public Shape {
   public:
     Rectangle();
     Rectangle(Coordonnee xy, int l, int w);
@@ -16,9 +16,9 @@ class Rectangle: public Forme {
     int getWidth();
     void setWidth(int w);
 
-    double aire() override;
+    double area() override;
 
-    void afficher(ostream &s) override;
+    void display(ostream &s) override;
 
   private:
     int itsLength;

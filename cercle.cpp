@@ -1,31 +1,31 @@
 #include "cercle.h"
 #include <cmath>
 
-Cercle::Cercle(){}
-Cercle::Cercle(Coordonnee xy, int r):Forme(xy.x, xy.y) {
+Circle::Circle(){}
+Circle::Circle(Coordonnee xy, int r):Shape(xy.x, xy.y) {
   setRadius(r);
 }
-Cercle::Cercle(int x, int y, int r):Forme(x, y) {
+Circle::Circle(int x, int y, int r):Shape(x, y) {
   setRadius(r);
 }
-Cercle::~Cercle(){};
+Circle::~Circle(){};
 
-int Cercle::getRadius() {
+int Circle::getRadius() {
   return itsRadius;
 }
 
-void Cercle::setRadius(int r){
+void Circle::setRadius(int r){
   itsRadius = r;
 }
 
-double Cercle::aire() {
+double Circle::area() {
   return itsRadius*itsRadius*M_PI;
 }
 
-void Cercle::afficher(ostream &s) {
-  s << "Cercle ( x=" << getAncrage().x
-    << ", y=" << getAncrage().y
+void Circle::display(ostream &s) {
+  s << "Cercle ( x=" << getAnchor().x
+    << ", y=" << getAnchor().y
     << ", r=" << getRadius()
-    << ", aire=" << aire()
+    << ", aire=" << area()
     << ")" << std::endl;
 }

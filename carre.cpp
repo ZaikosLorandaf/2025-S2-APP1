@@ -2,17 +2,17 @@
 #include "rectangle.h"
 
 
-Carre::Carre():Rectangle(){}
-Carre::Carre(Coordonnee xy, int l):Rectangle(xy, l, l) {}
-Carre::Carre(int x, int y, int l):Rectangle(x, y, l, l) {}
-Carre::~Carre(){}
+Square::Square():Rectangle(){}
+Square::Square(Coordonnee xy, int l):Rectangle(xy, l, l) {}
+Square::Square(int x, int y, int l):Rectangle(x, y, l, l) {}
+Square::~Square(){}
 
 
 
-void Carre::afficher(ostream &s) {
-  s << "Carre (x=" << getAncrage().x
-    << ", y=" << getAncrage().y
-    << ", aire=" << aire()
+void Square::display(ostream &s) {
+  s << "Carre (x=" << getAnchor().x
+    << ", y=" << getAnchor().y
+    << ", aire=" << area()
     << ")" << std::endl;
 }
 

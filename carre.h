@@ -5,13 +5,13 @@
 #include "forme.h"
 #include "rectangle.h"
 
-class Carre: public Rectangle {
+class Square: public Rectangle {
   public:
-    Carre();
-    Carre(Coordonnee xy, int l);
-    Carre(int x, int y, int l);
-    ~Carre();
+    Square();
+    Square(Coordonnee xy, int l);
+    Square(int x, int y, int l);
+    ~Square();
 
-    void afficher(ostream &s) override;
+    void display(ostream &s) override;
 };
 #endif

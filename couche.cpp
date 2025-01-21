@@ -1,13 +1,3 @@
-/********
- * Fichier: couche.cpp
- * Auteurs: C.-A. Brunet
- * Date: 13 juin 2024 (creation)
- * Modifie par : Sarah Gosselin
- * Date : Jan 2025
- * Description: Implementation des methodes des classes decrites dans
- *    couche.h. Ce fichier fait partie de la distribution de Graphicus.
- ********/
-
 #include "couche.h"
 #include "forme.h"
 
@@ -19,41 +9,41 @@ int Layer::getStateLay() {
   return state;
 }
 
-bool Layer::addShapeLay(Forme* f) {
-  if (indexFormes >= MAX_FORMES)
+bool Layer::addShapeLay(Shape* f) {
+  if (sizeIndex >= MAX_FORMES-1)
     return false;
-  indexFormes++;
-  formes[indexFormes] = f;
+  sizeIndex++;
+  formes[sizeIndex] = f;
   return true;
 }
 
-Forme* Layer::removeForme(int index) {
-  if (index >= indexFormes)
+Shape* Layer::removeForme(int index) {
+  if (index >= sizeIndex)
     return NULL;
-  Forme* f = formes[index];
-  for (int i = index; i < indexFormes; i++)
+  Shape* f = formes[index];
+  for (int i = index; i <= sizeIndex; i++)
     formes[i] = formes[i+1];
-  formes[indexFormes] = NULL;
-  indexFormes--;
+  formes[sizeIndex] = NULL;
+  sizeIndex--;
   return f;
 }
 
-Forme* Layer::getShapeLay(int index) {
-  if (index > indexFormes)
+Shape* Layer::getShapeLay(int index) {
+  if (index > sizeIndex)
     return NULL;
   return formes[index];
 }
 
 double Layer::getArea() {
   double sum{0};
-  for (int i = 0; i < indexFormes; i++)
-    sum += formes[i]->aire();
+  for (int i = 0; i < sizeIndex; i++)
+    sum += formes[i]->area();
   return sum;
 }
 
 bool Layer::translation(int deltaX, int deltaY) {
-  for (int i = 0; i < indexFormes; i++) {
-    formes[i]->translater(deltaX, deltaY);
+  for (int i = 0; i < sizeIndex; i++) {
+    formes[i]->moveOrigin(deltaX, deltaY);
   };
   return true;
 }
@@ -73,5 +63,28 @@ bool Layer::setState(int s) {
 }
 
 int Layer::getIndex() {
-  return indexFormes;
+  return sizeIndex;
 }
+
+/*void Layer::display(ostream &s) {*/
+/**/
+/*  s << "Etat: ";*/
+/*  switch (state) {*/
+/*    case 0:*/
+/*      s << "Initialised\n";*/
+/*      break;*/
+/*    case 1:*/
+/*      s << "Active\n";*/
+/*      break;*/
+/*    case 2:*/
+/*      s << "Inactive\n";*/
+/*      break;*/
+/*  };*/
+/**/
+/*  if (sizeIndex == -1) {*/
+/*    s << "Couche: vide" << std::endl;*/
+/*  } else {*/
+/*    for (int i = 0; i <= sizeIndex; i++)*/
+/*      formes[i]->display(s);*/
+/*  }*/
+/*}*/

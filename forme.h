@@ -1,12 +1,3 @@
-/********
- * Fichier: forme.h
- * Auteurs: C.-A. Brunet
- * Date: 13 juin 2024 (creation)
- * Description: Declaration des classes de formes geometriques. La
- *    classe Forme ne doit pas etre modifiee. Ce fichier fait partie de
- *    la distribution de Graphicus.
-********/
-
 #ifndef FORME_H
 #define FORME_H
 
@@ -15,17 +6,17 @@
 
 using namespace std;
 
-class Forme {
+class Shape {
 public:
-  Forme(int x = 0, int y = 0);
-  virtual ~Forme();
-  void translater(int deltaX, int deltaY);
-  Coordonnee getAncrage();
-  void setAncrage(Coordonnee c);
-  virtual double aire() = 0;
-  virtual void afficher(ostream & s) = 0;
+  Shape(int x = 0, int y = 0);
+  virtual ~Shape();
+  void moveOrigin(int deltaX, int deltaY);
+  Coordonnee getAnchor();
+  void setAnchor(Coordonnee c);
+  virtual double area() = 0;
+  virtual void display(ostream & s) = 0;
 protected:
-  Coordonnee ancrage;
+  Coordonnee anchor{0};
 };
 
 #endif

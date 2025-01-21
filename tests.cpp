@@ -1,14 +1,3 @@
-/********
- * Fichier: tests.cpp
- * Auteurs: C.-A. Brunet
- * Date: 13 juin 2024 (creation)
- * Modifie par : ...
- * Date : ...
- * Description: Implementation des methodes des classes decrites dans
- *    tests.h.  Ce fichier peut etre adapte a vos besoins de tests.
- *    Ce fichier fait partie de la distribution de Graphicus.
- ********/
-
 #include "tests.h"
 #include "canevas.h"
 #include "carre.h"
@@ -52,9 +41,9 @@ void Tests::tests_application_cas_01()
   Canevas c;
 
   std::cout << "\n\nETAPE 1 & 2\n";
-  c.afficher(cout);
+  c.display(cout);
   std::cout << "L'aire du canevas est: "
-    << c.aire() << std::endl;
+    << c.area() << std::endl;
 
 
   std::cout << "\n\nETAPE 3 & 5\n";
@@ -66,18 +55,18 @@ void Tests::tests_application_cas_01()
   c.addLayerCan();
 
   //~~~~~~~~~~~ Step 4 ~~~~~~~~~~~//
-  c.afficher(cout);
+  c.display(cout);
 
   //~~~~~~~~~~~ Step 5 ~~~~~~~~~~~//
   std::cout << "\nL'aire du canevas est: "
-    << c.aire() << std::endl;
+    << c.area() << std::endl;
 
 
   //~~~~~~~~~~~ Step 6 ~~~~~~~~~~~//
   std::cout << "\n\nETAPE 6 & 9\n";
   c.activateLayer(1);
-  c.addShape(new Cercle(0,1,5));
-  c.addShape(new Carre(1,2,6));
+  c.addShape(new Circle(0,1,5));
+  c.addShape(new Square(1,2,6));
   c.addShape(new Rectangle(2,3,4,9));
 
   //~~~~~~~~~~~ Step 7 ~~~~~~~~~~~//
@@ -85,7 +74,7 @@ void Tests::tests_application_cas_01()
   c.addShape(new Rectangle(0,0,12,3));
 
   //~~~~~~~~~~~ Step 8 ~~~~~~~~~~~//
-  c.afficher(cout);
+  c.display(cout);
 
   //~~~~~~~~~~~ Step 9 ~~~~~~~~~~~//
   /*std::cout << "L'aire du canevas est: "*/

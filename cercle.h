@@ -3,18 +3,18 @@
 
 #include "forme.h"
 
-class Cercle: public Forme {
+class Circle: public Shape {
   public:
-    Cercle();
-    Cercle(Coordonnee xy, int r);
-    Cercle(int x, int y, int r);
-    ~Cercle();
+    Circle();
+    Circle(Coordonnee xy, int r);
+    Circle(int x, int y, int r);
+    ~Circle();
 
     int getRadius();
     void setRadius(int r);
 
-    double aire() override;
-    void afficher(ostream &s) override;
+    double area() override;
+    void display(ostream &s) override;
   private:
       int itsRadius;
       int itsX;

@@ -1,15 +1,3 @@
-/********
- * Fichier: couche.h
- * Auteurs: C.-A. Brunet, Sarah Gosselin
- * Date: 13 juin 2024 (creation)
- * Modifie par : Sarah Gosselin
- * Date : Jan 2025
- * Description: Declaration de la classe pour une couche dans un
- *    canevas. La classe gere un tableau de formes en accord avec
- *    les specifications de Graphicus. Ce fichier fait partie de
- *    la distribution de Graphicus.
- ********/
-
 #ifndef COUCHE_H
 #define COUCHE_H
 
@@ -26,17 +14,18 @@ class Layer {
   public:
     Layer();
     int getStateLay();
-    bool addShapeLay(Forme* f);
-    Forme* removeForme(int index);
-    Forme* getShapeLay(int index);
+    bool addShapeLay(Shape* f);
+    Shape* removeForme(int index);
+    Shape* getShapeLay(int index);
     double getArea();
     bool translation(int deltaX, int deltaY);
     bool reset();
     bool setState(int s);
     int getIndex();
+    void display(ostream &s);
   private:
-    Forme* formes[MAX_FORMES];
-    int indexFormes{-1};
+    Shape* formes[MAX_FORMES];
+    int sizeIndex{-1};
     int state{0};
 };
 
