@@ -9,19 +9,19 @@
 class MyVector {
   public:
     MyVector();
-    ~MyVector();
+    virtual ~MyVector();
     bool addLayerVec(Layer* c);
     int getCurrentSize();
     void increaseSize();
-    bool vider();
+    bool emptyVector();
     Layer* removeLayer(int index);
     Layer* getLayer(int index);
     void destroyerOfLayers();
     int getTempCapa();
-    Layer** vector;
+    Layer** layers;
   private:
     int capacity;
-    int currentMaxIndex;
+    int currentMaxIndex{-1};
 };
 
 #endif

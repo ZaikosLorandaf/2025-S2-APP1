@@ -8,7 +8,7 @@ class Rectangle: public Shape {
     Rectangle();
     Rectangle(Coordonnee xy, int l, int w);
     Rectangle(int x, int y, int l, int w);
-    ~Rectangle();
+    virtual ~Rectangle();
 
     int getLength();
     void setLength(int l);

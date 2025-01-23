@@ -2,13 +2,12 @@
 
 MyVector::MyVector() {
   capacity = INIT_VEC_SIZE;
-  currentMaxIndex = -1; // Start with empty vector
-  vector = new Layer*[capacity];
+  layers = new Layer*[capacity];
 }
 
 MyVector::~MyVector() {
-  vider();
-  delete[] vector;
+  for (int i = 0; i < currentMaxIndex; i++)
+    delete layers[i];
 }
 
 bool MyVector::addLayerVec(Layer* c) {
@@ -17,7 +16,7 @@ bool MyVector::addLayerVec(Layer* c) {
   if (currentMaxIndex == capacity-1)
     increaseSize();
   currentMaxIndex++;
-  vector[currentMaxIndex] = c;
+  layers[currentMaxIndex] = c;
   return true;
 }
 
@@ -25,41 +24,47 @@ void MyVector::increaseSize() {
   capacity *= 2;
   Layer** newTemp = new Layer*[capacity];
   for (int i = 0; i <= currentMaxIndex; i++)
-    newTemp[i] = vector[i];
-  delete[] vector;
-  vector = newTemp;
+    newTemp[i] = layers[i];
+
+  delete[] layers;
+  layers = newTemp;
 }
 
 int MyVector::getCurrentSize() {
   return currentMaxIndex;
 }
 
-bool MyVector::vider() {
+bool MyVector::emptyVector() {
   for (int i = 0; i < currentMaxIndex; i++)
-    vector[i] = NULL;
+    delete layers[i];
+
   capacity = INIT_VEC_SIZE;
-  Layer* newCouche = new Layer[capacity];
-  *vector = newCouche;
-  delete[] newCouche;
+  currentMaxIndex = -1;
+  Layer** newCouche = new Layer*[capacity];
+  delete[] layers;
+  layers = newCouche;
   return true;
 }
 
 Layer* MyVector::removeLayer(int index) {
   if (index < 0 || index > currentMaxIndex)
     return NULL;
-  Layer* c = vector[index];
+
+  Layer* c = layers[index];
   if (index == currentMaxIndex) {
-    vector[index] = NULL;
+    layers[index] = NULL;
     return c;
   }
   for (int i = index; i < currentMaxIndex; i++)
-    vector[i] = vector[i+1];
-  vector[currentMaxIndex] = NULL;
+    layers[i] = layers[i+1];
+
+  layers[currentMaxIndex] = NULL;
   currentMaxIndex--;
-  return c;
+  delete c;
+  return NULL;
 }
 
 Layer* MyVector::getLayer(int index) {
-  return vector[index];
+  return layers[index];
 }
 

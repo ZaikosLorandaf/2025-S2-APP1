@@ -1,5 +1,7 @@
 #include "cercle.h"
+#include <cfenv>
 #include <cmath>
+#include <iomanip>
 
 Circle::Circle(){}
 Circle::Circle(Coordonnee xy, int r):Shape(xy.x, xy.y) {
@@ -23,9 +25,11 @@ double Circle::area() {
 }
 
 void Circle::display(ostream &s) {
-  s << "Cercle ( x=" << getAnchor().x
+  s << "Cercle (x=" << getAnchor().x
     << ", y=" << getAnchor().y
     << ", r=" << getRadius()
+    << std::fixed
+    << std::setprecision(2)
     << ", aire=" << area()
     << ")" << std::endl;
 }

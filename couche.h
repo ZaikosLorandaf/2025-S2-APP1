@@ -13,9 +13,10 @@ const int MAX_FORMES = 5;
 class Layer {
   public:
     Layer();
+    virtual ~Layer();
     int getStateLay();
     bool addShapeLay(Shape* f);
-    Shape* removeForme(int index);
+    Shape* removeShape(int index);
     Shape* getShapeLay(int index);
     double getArea();
     bool translation(int deltaX, int deltaY);

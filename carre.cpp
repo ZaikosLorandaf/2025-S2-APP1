@@ -12,6 +12,7 @@ Square::~Square(){}
 void Square::display(ostream &s) {
   s << "Carre (x=" << getAnchor().x
     << ", y=" << getAnchor().y
+    << ", cote=" << getLength()
     << ", aire=" << area()
     << ")" << std::endl;
 }

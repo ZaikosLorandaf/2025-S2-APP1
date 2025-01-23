@@ -3,6 +3,13 @@
 
 Layer::Layer() {
   state = STATE_INIT;
+  for (int i = 0; i < MAX_FORMES; i++)
+    formes[i] = NULL;
+}
+Layer::~Layer() {
+  for (int i = 0; i < MAX_FORMES; i++)
+    if (formes[i] != NULL)
+      delete formes[i];
 }
 
 int Layer::getStateLay() {
@@ -17,15 +24,16 @@ bool Layer::addShapeLay(Shape* f) {
   return true;
 }
 
-Shape* Layer::removeForme(int index) {
-  if (index >= sizeIndex)
+Shape* Layer::removeShape(int index) {
+  if (index > sizeIndex)
     return NULL;
   Shape* f = formes[index];
+  delete f;
   for (int i = index; i <= sizeIndex; i++)
     formes[i] = formes[i+1];
   formes[sizeIndex] = NULL;
   sizeIndex--;
-  return f;
+  return NULL;
 }
 
 Shape* Layer::getShapeLay(int index) {
@@ -42,15 +50,18 @@ double Layer::getArea() {
 }
 
 bool Layer::translation(int deltaX, int deltaY) {
-  for (int i = 0; i < sizeIndex; i++) {
+  for (int i = 0; i < sizeIndex; i++)
     formes[i]->moveOrigin(deltaX, deltaY);
-  };
   return true;
 }
 
 bool Layer::reset() {
   for (int i = 0; i < MAX_FORMES; i++)
-    formes[i] = NULL;
+    if (formes[i] != NULL) {
+      delete formes[i];
+      formes[i] = NULL;
+    }
+  sizeIndex = -1;
   state = STATE_INIT;
   return true;
 };
@@ -65,26 +76,3 @@ bool Layer::setState(int s) {
 int Layer::getIndex() {
   return sizeIndex;
 }
-
-/*void Layer::display(ostream &s) {*/
-/**/
-/*  s << "Etat: ";*/
-/*  switch (state) {*/
-/*    case 0:*/
-/*      s << "Initialised\n";*/
-/*      break;*/
-/*    case 1:*/
-/*      s << "Active\n";*/
-/*      break;*/
-/*    case 2:*/
-/*      s << "Inactive\n";*/
-/*      break;*/
-/*  };*/
-/**/
-/*  if (sizeIndex == -1) {*/
-/*    s << "Couche: vide" << std::endl;*/
-/*  } else {*/
-/*    for (int i = 0; i <= sizeIndex; i++)*/
-/*      formes[i]->display(s);*/
-/*  }*/
-/*}*/

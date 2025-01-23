@@ -25,7 +25,7 @@ class Canevas
 {
   public:
     Canevas();
-    ~Canevas();
+    virtual ~Canevas();
 
     bool addLayerCan();
     bool removeLayerCan(int index);
@@ -37,14 +37,14 @@ class Canevas
     bool deactivateLayer(int index);
 
     bool addShape(Shape *p_forme);
-    bool retirerForme(int index);
+    bool removeShape(int index);
 
     double area();
-    bool translater(int deltaX, int deltaY);
+    bool translation(int deltaX, int deltaY);
     void display(ostream & s);
 
   private:
-    MyVector vector;
+    MyVector *vector;
     int activeLayer{-1};
 };
 
